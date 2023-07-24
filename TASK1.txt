@@ -1,0 +1,25 @@
+*& Report Zpriya_MATERIALDESC
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT Zpriya_MATERIALDESC.
+
+PARAMETERS P_MATNR TYPE MAKT-MATNR.
+
+TYPES :BEGIN OF TY_MAKT,
+        MATNR TYPE MAKT-MATNR,
+        SPRAS TYPE MAKT-SPRAS,
+        MAKTX TYPE MAKT-MAKTX,
+  END OF TY_MAKT.
+
+ DATA ST_MAKT TYPE TY_MAKT.
+
+ WRITE : / 'MATERIAL ID',
+           30 'LANGUAGE',
+           50 'MATERIAL DESCRIPTION'.
+
+ SELECT MATNR SPRAS MAKTX FROM MAKT INTO ST_MAKT WHERE MATNR EQ P_MATNR.
+   WRITE : / ST_MAKT-MATNR,
+             30  ST_MAKT-SPRAS,
+              50 ST_MAKT-MAKTX.
+   ENDSELECT.

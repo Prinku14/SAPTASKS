@@ -1,0 +1,26 @@
+*& Report ZPRIYA_MATERIALPLANT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZPRIYA_MATERIALPLANT.
+
+PARAMETERS P_WERKS TYPE MARD-WERKS.
+
+TYPES : BEGIN OF TY_MARD,
+        MATNR TYPE MARD-MATNR,
+        WERKS TYPE MARD-WERKS,
+        LGORT TYPE MARD-LGORT,
+  END OF ty_mard.
+
+  DATA ST_MARD TYPE ty_mard.
+
+  WRITE : / 'MATERIAL NO',
+           20 'PLANT NO.',
+           40 'STORAGE LOCATION'.
+
+  SELECT matnr werks lgort from mard INTO st_mard where werks eq p_werks.
+
+    write : / st_mard-matnr,
+             20 st_mard-werks,
+             40 st_mard-lgort.
+    ENDSELECT.
